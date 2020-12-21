@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employment Agency</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+    </script>
+</head>
+<body>
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Employment Agency</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a th:href="@{/activities}">Activities</a></li>
+            <li><a th:href="@{/applicants}">Applicants</a></li>
+            <li><a th:href="@{/deals}">Deals</a></li>
+            <li><a th:href="@{/employers}">Employers</a></li>
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+        </ul>
+    </div>
+</nav>
+<ul class="sidenav" id="mobile-demo">
+    <li><a th:href="@{/activities}">Activities</a></li>
+    <li><a th:href="@{/applicants}">Applicants</a></li>
+    <li><a th:href="@{/deals}">Deals</a></li>
+    <li><a th:href="@{/employers}">Employers</a></li>
+    <li><a th:href="@{/vacancies}">Vacancies</a></li>
+</ul>
+
+<div class="container">
+    <table class="">
+        <thead>
+        <tr class="row">
+            <th class="center"><h5>Employers</h5></th>
+        </tr>
+        <tr class="row">
+            <th class="col s2">Company</th>
+            <th class="col s2">Phone</th>
+            <th class="col s5">Address</th>
+            <th class="col s2"></th>
+            <th class="col s1">
+                <a th:href="@{/employers/0/edit}" class="waves-effect btn-float">
+                    <i class="small material-icons green-text">add</i>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody th:each="item : ${employers}">
+        <tr class="row">
+            <td class="col s2" th:text="${item.title}"></td>
+            <td class="col s2" th:text="${item.phone}"></td>
+            <td class="col s5" th:text="${item.address}"></td>
+            <th class="col s1"></th>
+            <td class="col s1">
+                <a th:href="@{/employers/{id}/edit(id=${item.id})}" class="waves-effect btn-float">
+                    <i class="small material-icons grey-text">mode_edit</i>
+                </a>
+            </td>
+            <td class="col s1">
+                <a th:href="@{/employers/{id}/delete(id=${item.id})}" class="waves-effect btn-float">
+                    <i class="small material-icons red-text">delete</i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

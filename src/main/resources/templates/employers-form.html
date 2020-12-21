@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employment Agency</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
+</head>
+<body>
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Employment Agency</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a th:href="@{/activities}">Activities</a></li>
+            <li><a th:href="@{/applicants}">Applicants</a></li>
+            <li><a th:href="@{/deals}">Deals</a></li>
+            <li><a th:href="@{/employers}">Employers</a></li>
+            <li><a th:href="@{/vacancies}">Vacancies</a></li>
+        </ul>
+    </div>
+</nav>
+<ul class="sidenav" id="mobile-demo">
+    <li><a th:href="@{/activities}">Activities</a></li>
+    <li><a th:href="@{/applicants}">Applicants</a></li>
+    <li><a th:href="@{/deals}">Deals</a></li>
+    <li><a th:href="@{/employers}">Employers</a></li>
+    <li><a th:href="@{/vacancies}">Vacancies</a></li>
+</ul>
+
+<form action="#" method="post" th:action="@{/employers/save}" th:object="${employer}">
+    <div class="container">
+        <label><input hidden readonly type="number" th:field="*{id}" id="id"></label>
+        <label><input hidden readonly th:field="*{vacancies}" id="vacancies"></label>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="title" type="text" th:field="*{title}" class="validate">
+                <label for="title">Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="address" type="text" class="validate" th:field="*{address}">
+                <label for="address">Address</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="phone" type="tel" th:field="*{phone}" class="validate">
+                <label for="phone">Phone</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <button class="btn waves-effect waves-light down" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
